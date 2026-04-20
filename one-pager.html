@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>未来通帳 — Future Log</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Libre+Baskerville:ital@0;1&family=DM+Mono:wght@400;500&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --parchment:#f5f0e8;--parchment2:#ede6d3;--parchment3:#e2d9c3;
+  --ink:#1a1208;--ink2:#3d3420;--ink3:#7a6e55;
+  --navy:#0d1f3c;--navy2:#1a3460;
+  --gold:#8b6914;--gold2:#c49a2a;--gold3:#e8c44a;
+  --teal:#0a4a3d;--teal2:#0f6e56;
+  --red:#7a1f1f;
+  --border:#c8b98a;--border2:#b0a07a;
+  --shadow:rgba(26,18,8,.15);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  font-family:'Libre Baskerville',serif;
+  background:var(--navy);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* STARFIELD */
+.stars{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:var(--navy);
+  overflow:hidden;
+}
+.stars::before,.stars::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 8%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 82% 70%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 12%, rgba(255,255,255,.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 35% 55%, rgba(255,255,255,.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 45%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 48% 30%, rgba(255,255,255,.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 90%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 65% 5%, rgba(255,255,255,.7) 0%, transparent 100%);
+}
+.stars::after{
+  background-image:
+    radial-gradient(1px 1px at 20% 20%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 65%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 73% 38%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 88%, rgba(255,255,255,.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 55%, rgba(255,255,255,.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 8% 30%, rgba(255,255,255,.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 58% 48%, rgba(200,180,120,.5) 0%, transparent 100%);
+  animation:twinkle 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle{0%{opacity:.7}100%{opacity:1}}
+
+/* WRAPPER */
+.wrapper{
+  position:relative;z-index:1;
+  max-width:780px;margin:0 auto;
+  padding:40px 20px 60px;
+}
+
+/* HERO */
+.hero{text-align:center;margin-bottom:48px;}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:5px;
+  color:rgba(200,185,138,.6);margin-bottom:16px;
+}
+.hero-title-jp{
+  font-family:'Noto Serif JP',serif;font-size:clamp(48px,8vw,72px);
+  font-weight:700;color:var(--parchment);line-height:1;
+  margin-bottom:8px;letter-spacing:8px;
+}
+.hero-title-en{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(22px,3.5vw,32px);color:var(--gold2);
+  margin-bottom:20px;font-weight:400;letter-spacing:2px;
+}
+.hero-sub{
+  font-size:14px;color:rgba(245,240,232,.65);line-height:2;
+  max-width:500px;margin:0 auto 32px;
+  font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;
+}
+.compass{
+  font-size:40px;margin-bottom:8px;
+  animation:rotate 20s linear infinite;
+  display:inline-block;
+}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* BOOK */
+.book{
+  background:var(--parchment);
+  border-radius:3px 12px 12px 3px;
+  box-shadow:
+    -4px 0 8px rgba(0,0,0,.3),
+    0 8px 40px rgba(0,0,0,.4),
+    inset -2px 0 6px rgba(0,0,0,.1);
+  overflow:hidden;
+  position:relative;
+}
+
+/* BOOK SPINE */
+.book::before{
+  content:'未来通帳';
+  position:absolute;left:0;top:0;bottom:0;width:32px;
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);
+  display:flex;align-items:center;justify-content:center;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  font-family:'Noto Serif JP',serif;font-size:11px;
+  color:var(--gold2);letter-spacing:4px;
+  border-right:1px solid var(--border2);
+  z-index:2;
+}
+
+.book-inner{margin-left:32px;}
+
+/* TABS */
+.book-tabs{
+  display:flex;background:var(--parchment3);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;gap:0;
+}
+.book-tab{
+  padding:12px 20px;font-size:13px;cursor:pointer;
+  color:var(--ink3);border-bottom:2px solid transparent;
+  font-family:'Cormorant Garamond',serif;font-size:15px;
+  transition:.2s;white-space:nowrap;
+}
+.book-tab.active{
+  color:var(--navy);border-bottom-color:var(--navy2);font-weight:600;
+}
+.book-tab:hover:not(.active){color:var(--ink2);}
+
+.book-page{display:none;padding:32px 32px 28px;}
+.book-page.active{display:block;}
+
+/* PAGE HEADER */
+.page-date{
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--ink3);letter-spacing:2px;margin-bottom:4px;
+}
+.page-heading{
+  font-family:'Cormorant Garamond',serif;font-size:24px;
+  font-weight:600;color:var(--navy);margin-bottom:20px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);
+}
+
+/* COORDINATE */
+.coord-row{
+  display:flex;gap:8px;align-items:center;margin-bottom:16px;
+}
+.coord-label{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  color:var(--ink3);min-width:80px;
+}
+.coord-val{
+  font-family:'Cormorant Garamond',serif;font-size:18px;
+  color:var(--navy2);font-style:italic;
+}
+
+/* TEXTAREA / INPUT STYLES */
+.log-label{
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
+  color:var(--ink3);margin-bottom:6px;display:block;
+}
+.log-input{
+  width:100%;border:none;border-bottom:1px solid var(--border);
+  background:transparent;font-family:'Libre Baskerville',serif;
+  font-size:14px;color:var(--ink);padding:6px 0;
+  outline:none;transition:.2s;
+}
+.log-input:focus{border-bottom-color:var(--navy);}
+.log-textarea{
+  width:100%;border:1px solid var(--border);
+  background:rgba(245,240,232,.5);border-radius:4px;
+  font-family:'Cormorant Garamond',serif;font-size:16px;
+  color:var(--ink);padding:12px;line-height:2;
+  outline:none;resize:vertical;min-height:100px;
+  transition:.2s;
+}
+.log-textarea:focus{border-color:var(--navy2);}
+.log-textarea::placeholder{color:var(--ink3);font-style:italic;}
+
+/* GRID */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.field-group{margin-bottom:16px;}
+
+/* STARS RATING */
+.star-row{display:flex;gap:6px;margin-top:6px;}
+.star{font-size:18px;cursor:pointer;color:var(--border);transition:.15s;}
+.star.lit{color:var(--gold2);}
+.star:hover{color:var(--gold3);}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:.1s;
+}
+.tl-item:last-child{border-bottom:none;}
+.tl-item:hover{background:rgba(0,0,0,.02);margin:0 -12px;padding:14px 12px;}
+.tl-year{
+  font-family:'DM Mono',monospace;font-size:12px;
+  color:var(--gold);min-width:50px;padding-top:3px;font-weight:500;
+}
+.tl-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--navy2);flex-shrink:0;margin-top:5px;
+  border:2px solid var(--parchment);
+  box-shadow:0 0 0 2px var(--navy2);
+}
+.tl-dot.done{background:var(--teal2);}
+.tl-dot.now{background:var(--gold2);animation:pulse-dot 2s infinite;}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 2px var(--gold2)}50%{box-shadow:0 0 0 4px rgba(196,154,42,.4),0 0 0 2px var(--gold2)}}
+.tl-content{flex:1;}
+.tl-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.tl-body{font-size:12px;color:var(--ink3);line-height:1.7;}
+.tl-tag{
+  display:inline-block;font-family:'DM Mono',monospace;font-size:9px;
+  letter-spacing:1px;padding:2px 8px;border-radius:20px;margin-top:4px;
+}
+.tl-tag.done{background:#d4f0e8;color:var(--teal);}
+.tl-tag.now{background:#fff0d0;color:var(--gold);}
+.tl-tag.future{background:#d6e4f7;color:var(--navy2);}
+
+/* SKILL MATRIX */
+.skill-grid{display:grid;grid-template-columns:1fr;gap:10px;}
+.skill-row{display:flex;align-items:center;gap:12px;}
+.skill-name{font-size:13px;color:var(--ink2);min-width:120px;}
+.skill-bar-track{flex:1;height:6px;background:var(--parchment3);border-radius:3px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--navy2),var(--teal2));transition:width .8s cubic-bezier(.34,1.56,.64,1);}
+.skill-target{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink3);min-width:30px;text-align:right;}
+
+/* FINANCE */
+.finance-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.fin-card{
+  background:var(--parchment3);border:1px solid var(--border);
+  border-radius:6px;padding:12px;text-align:center;
+}
+.fin-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--ink3);margin-bottom:6px;}
+.fin-amount{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--navy2);font-weight:600;line-height:1;}
+.fin-unit{font-size:11px;color:var(--ink3);}
+.fin-bar-track{height:4px;background:rgba(0,0,0,.1);border-radius:2px;margin-top:8px;overflow:hidden;}
+.fin-bar-fill{height:100%;border-radius:2px;background:var(--teal2);}
+
+/* SAVE BTN */
+.btn-save{
+  background:var(--navy);color:var(--parchment);
+  border:none;border-radius:4px;padding:10px 24px;
+  font-family:'Cormorant Garamond',serif;font-size:15px;
+  cursor:pointer;margin-top:16px;transition:.15s;
+  display:flex;align-items:center;gap:8px;
+}
+.btn-save:hover{background:var(--navy2);}
+
+/* QUOTE */
+.quote{
+  border-left:3px solid var(--gold);
+  padding:12px 16px;margin:16px 0;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:16px;color:var(--ink2);line-height:1.9;
+  background:rgba(139,105,20,.05);border-radius:0 6px 6px 0;
+}
+.quote cite{display:block;font-size:12px;font-style:normal;color:var(--ink3);margin-top:6px;font-family:'DM Mono',monospace;letter-spacing:1px;}
+
+/* SAVE TOAST */
+.toast{
+  position:fixed;bottom:24px;right:24px;
+  background:var(--navy);color:var(--parchment);
+  padding:12px 20px;border-radius:6px;font-size:13px;
+  font-family:'DM Mono',monospace;letter-spacing:1px;
+  opacity:0;transform:translateY(8px);
+  transition:.3s;pointer-events:none;z-index:100;
+}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* DUNKSOFT LINK */
+.dunk-link{
+  text-align:center;margin-top:32px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:3px;color:rgba(200,185,138,.4);
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="compass">🧭</div>
+    <div class="hero-eyebrow">DUNKSOFT · TENSOKU · 天測</div>
+    <div class="hero-title-jp">未来通帳</div>
+    <div class="hero-title-en">Future Log — Celestial Navigation for Life</div>
+    <div class="hero-sub">
+      "A ship's captain does not wait for the sea to calm.<br>
+      He plots his course by the stars, and sails."<br>
+      — French Maritime Journal, 1847
+    </div>
+  </div>
+
+  <!-- BOOK -->
+  <div class="book">
+    <div class="book-inner">
+
+      <!-- TABS -->
+      <div class="book-tabs">
+        <div class="book-tab active" onclick="showPage('destination',this)">🗺 Destination</div>
+        <div class="book-tab" onclick="showPage('log',this)">✍️ Daily Log</div>
+        <div class="book-tab" onclick="showPage('skills',this)">⚓ Skills</div>
+        <div class="book-tab" onclick="showPage('finance',this)">💰 Finance</div>
+        <div class="book-tab" onclick="showPage('stars',this)">⭐ Stars</div>
+      </div>
+
+      <!-- PAGE 1: DESTINATION -->
+      <div class="book-page active" id="page-destination">
+        <div class="page-date">CHART · 航路図</div>
+        <div class="page-heading">Where are you sailing to?</div>
+
+        <div class="coord-row">
+          <span class="coord-label">DEPARTURE</span>
+          <span class="coord-val">Here · Now · 今ここから</span>
+        </div>
+        <div class="coord-row">
+          <span class="coord-label">HORIZON</span>
+          <span class="coord-val" id="horizon-display">—</span>
+        </div>
+
+        <div class="field-group">
+          <label class="log-label">YOUR DESTINATION — 5年後、どこにいたいか？ / Where will you be in 5 years?</label>
+          <textarea class="log-textarea" id="destination-text" rows="3"
+            placeholder="例：日本の認証技術で世界のスタンダードを変えている。徳島から、世界へ。&#10;Example: I have changed the global standard for authentication using Japanese cultural technology. From Tokushima, to the world."
+            oninput="updateHorizon(this.value)"></textarea>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label class="log-label">YOUR NAME · 航海者</label>
+            <input class="log-input" type="text" id="nav-name" placeholder="Koichiro Hoshino">
+          </div>
+          <div class="field-group">
+            <label class="log-label">TARGET YEAR · 到着年</label>
+            <input class="log-input" type="text" id="target-year" placeholder="2031">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="log-label">THE ONE THING — この航海の核心は何か？</label>
+          <input class="log-input" type="text" id="one-thing" placeholder="例：43年間目撃してきた問題を、自分の手で解決する。">
+        </div>
+
+        <div class="quote">
+          "大谷翔平は高校1年のとき、8球団ドラフト1位指名と160km/hを同じマンダラチャートに書いた。<br>
+          未来通帳は、あなたの航路図だ。"
+          <cite>— TENSOKU Philosophy · DUNKSOFT 2026</cite>
+        </div>
+
+        <button class="btn-save" onclick="savePage('destination')">
+          <span>⚓</span> Set Course · 航路を記録する
+        </button>
+      </div>
+
+      <!-- PAGE 2: DAILY LOG -->
+      <div class="book-page" id="page-log">
+        <div class="page-date" id="log-date"></div>
+        <div class="page-heading">Today's Log · 今日の航海日誌</div>
+
+        <div class="field-group">
+          <label class="log-label">POSITION REPORT — 今日の現在地</label>
+          <textarea class="log-textarea" id="log-today" rows="3"
+            placeholder="今日、何をしたか？何が進んだか？何が難しかったか？&#10;What did I do today? What moved forward? What was hard?"></textarea>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label class="log-label">WIND — 追い風（うまくいったこと）</label>
+            <textarea class="log-textarea" id="log-wind" rows="2"
+              placeholder="What went well?"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="log-label">CURRENT — 逆流（課題・障害）</label>
+            <textarea class="log-textarea" id="log-current" rows="2"
+              placeholder="What was the obstacle?"></textarea>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="log-label">TOMORROW'S BEARING — 明日の針路</label>
+          <input class="log-input" type="text" id="log-tomorrow" placeholder="明日、一つだけやること / One thing to do tomorrow">
+        </div>
+
+        <div class="field-group">
+          <label class="log-label">CONFIDENCE · 今日の自信度</label>
+          <div class="star-row" id="confidence-stars">
+            <span class="star" onclick="setStars(1)">★</span>
+            <span class="star" onclick="setStars(2)">★</span>
+            <span class="star" onclick="setStars(3)">★</span>
+            <span class="star" onclick="setStars(4)">★</span>
+            <span class="star" onclick="setStars(5)">★</span>
+          </div>
+        </div>
+
+        <button class="btn-save" onclick="savePage('log')">
+          <span>📖</span> Log Entry · 記録する
+        </button>
+      </div>
+
+      <!-- PAGE 3: SKILLS -->
+      <div class="book-page" id="page-skills">
+        <div class="page-date">SKILL CHART · 技術海図</div>
+        <div class="page-heading">Navigator's Capabilities · 航海者のスキル</div>
+
+        <div class="skill-grid" id="skill-grid">
+          <!-- rendered by JS -->
+        </div>
+
+        <div style="margin-top:20px;">
+          <label class="log-label">ADD A SKILL · スキルを追加する</label>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input class="log-input" type="text" id="new-skill-name" placeholder="例：English pitch / 英語ピッチ" style="flex:1;">
+            <input class="log-input" type="number" id="new-skill-val" placeholder="現在 0-100" style="width:80px;" min="0" max="100">
+            <input class="log-input" type="number" id="new-skill-target" placeholder="目標" style="width:80px;" min="0" max="100">
+            <button class="btn-save" style="margin-top:0;padding:8px 14px;font-size:13px;" onclick="addSkill()">Add</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE 4: FINANCE -->
+      <div class="book-page" id="page-finance">
+        <div class="page-date">TREASURE MAP · 財務海図</div>
+        <div class="page-heading">Resources for the Voyage · 航海の資金</div>
+
+        <div class="finance-grid">
+          <div class="fin-card">
+            <div class="fin-label">CURRENT FUNDS</div>
+            <div class="fin-amount" id="fin-current">—</div>
+            <div class="fin-unit">万円</div>
+            <div class="fin-bar-track"><div class="fin-bar-fill" id="fin-bar" style="width:0%"></div></div>
+          </div>
+          <div class="fin-card">
+            <div class="fin-label">GOAL · 目標</div>
+            <div class="fin-amount" id="fin-goal-disp">—</div>
+            <div class="fin-unit">万円 by <span id="fin-goal-year">—</span></div>
+          </div>
+          <div class="fin-card">
+            <div class="fin-label">PROGRESS</div>
+            <div class="fin-amount" id="fin-pct">—</div>
+            <div class="fin-unit">% of goal</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field-group">
+            <label class="log-label">CURRENT SAVINGS · 現在の蓄え（万円）</label>
+            <input class="log-input" type="number" id="fin-now" placeholder="例：500" oninput="updateFinance()">
+          </div>
+          <div class="field-group">
+            <label class="log-label">GOAL AMOUNT · 目標金額（万円）</label>
+            <input class="log-input" type="number" id="fin-target" placeholder="例：2000" oninput="updateFinance()">
+          </div>
+          <div class="field-group">
+            <label class="log-label">GOAL YEAR · 達成年</label>
+            <input class="log-input" type="text" id="fin-year" placeholder="例：2031" oninput="updateFinance()">
+          </div>
+          <div class="field-group">
+            <label class="log-label">MONTHLY SAVING · 月間積立（万円）</label>
+            <input class="log-input" type="number" id="fin-monthly" placeholder="例：20" oninput="updateFinance()">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="log-label">PURPOSE · このお金は何のために？</label>
+          <textarea class="log-textarea" id="fin-purpose" rows="2"
+            placeholder="例：TENSOKU AUTH™のグローバル展開資金。YCのDemo Dayまでに実証実績を積む。"></textarea>
+        </div>
+
+        <button class="btn-save" onclick="savePage('finance')">
+          <span>💎</span> Record · 記録する
+        </button>
+      </div>
+
+      <!-- PAGE 5: STARS (Milestones) -->
+      <div class="book-page" id="page-stars">
+        <div class="page-date">CELESTIAL LOG · 天測記録</div>
+        <div class="page-heading">Stars Fixed · 達成した星座</div>
+
+        <div class="timeline" id="stars-timeline">
+          <!-- rendered by JS -->
+        </div>
+
+        <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+          <label class="log-label">ADD A MILESTONE · 新しい星を記録する</label>
+          <div style="display:grid;grid-template-columns:80px 1fr 100px auto;gap:8px;align-items:center;">
+            <input class="log-input" type="text" id="ms-year" placeholder="年">
+            <input class="log-input" type="text" id="ms-title" placeholder="マイルストーン / Milestone">
+            <select style="border:none;border-bottom:1px solid var(--border);background:transparent;font-family:'Libre Baskerville',serif;font-size:13px;padding:6px 0;color:var(--ink);outline:none;" id="ms-status">
+              <option value="done">達成 ✓</option>
+              <option value="now">進行中 ◉</option>
+              <option value="future">予定 ○</option>
+            </select>
+            <button class="btn-save" style="margin-top:0;padding:8px 14px;font-size:13px;" onclick="addMilestone()">Add ✦</button>
+          </div>
+          <input class="log-input" type="text" id="ms-body" placeholder="詳細 / Details" style="margin-top:8px;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="dunk-link">DUNKSOFT Co., Ltd. · TENSOKU · Love your life, love your time®</div>
+</div>
+
+<div class="toast" id="toast">✦ Logged to your Future</div>
+
+<script>
+// ── DATE ──
+var now = new Date();
+document.getElementById('log-date').textContent =
+  now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 · Log Entry';
+
+// ── TABS ──
+function showPage(id, btn){
+  document.querySelectorAll('.book-page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.book-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── HORIZON ──
+function updateHorizon(val){
+  var el = document.getElementById('horizon-display');
+  el.textContent = val.trim().split('\n')[0].substring(0,50) || '—';
+}
+
+// ── STARS ──
+var starRating = 0;
+function setStars(n){
+  starRating = n;
+  document.querySelectorAll('#confidence-stars .star').forEach(function(s,i){
+    s.classList.toggle('lit', i < n);
+  });
+}
+
+// ── SKILLS ──
+var skills = [
+  {name:'Technology / 技術力', current:70, target:90},
+  {name:'English Pitch', current:45, target:85},
+  {name:'Finance / 資金調達', current:30, target:75},
+  {name:'Global Network', current:20, target:70},
+  {name:'Patent / 知財', current:60, target:95},
+];
+function renderSkills(){
+  var g = document.getElementById('skill-grid');
+  g.innerHTML = '';
+  skills.forEach(function(s){
+    var pct = s.current;
+    g.innerHTML +=
+      '<div class="skill-row">' +
+      '<div class="skill-name">' + s.name + '</div>' +
+      '<div class="skill-bar-track"><div class="skill-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<div class="skill-target">' + s.current + '→' + s.target + '</div>' +
+      '</div>';
+  });
+  setTimeout(function(){
+    document.querySelectorAll('.skill-bar-fill').forEach(function(el,i){
+      el.style.width = skills[i].current + '%';
+    });
+  }, 100);
+}
+function addSkill(){
+  var name = document.getElementById('new-skill-name').value.trim();
+  var cur  = parseInt(document.getElementById('new-skill-val').value) || 0;
+  var tgt  = parseInt(document.getElementById('new-skill-target').value) || 100;
+  if(!name) return;
+  skills.push({name:name, current:cur, target:tgt});
+  document.getElementById('new-skill-name').value = '';
+  document.getElementById('new-skill-val').value = '';
+  document.getElementById('new-skill-target').value = '';
+  renderSkills();
+}
+renderSkills();
+
+// ── FINANCE ──
+function updateFinance(){
+  var cur = parseFloat(document.getElementById('fin-now').value) || 0;
+  var tgt = parseFloat(document.getElementById('fin-target').value) || 0;
+  var yr  = document.getElementById('fin-year').value || '—';
+  var pct = tgt > 0 ? Math.min(100, Math.round(cur/tgt*100)) : 0;
+  document.getElementById('fin-current').textContent = cur > 0 ? cur.toLocaleString() : '—';
+  document.getElementById('fin-goal-disp').textContent = tgt > 0 ? tgt.toLocaleString() : '—';
+  document.getElementById('fin-goal-year').textContent = yr;
+  document.getElementById('fin-pct').textContent = tgt > 0 ? pct : '—';
+  document.getElementById('fin-bar').style.width = pct + '%';
+}
+
+// ── MILESTONES ──
+var milestones = [
+  {year:'1983', title:'DUNKSOFT 創業', body:'AIDAさんの夢を受け継ぎ、創業。', status:'done'},
+  {year:'2026', title:'YC & Antler 同時応募', body:'初めて外部資本へのアプローチ。43年目の新航路。', status:'now'},
+  {year:'2026', title:'徳島合同証券パイロット', body:'43年の信頼が初めて収益に。', status:'now'},
+  {year:'2027', title:'証券業協会標準採用', body:'日本の証券業界全体の認証基盤へ。', status:'future'},
+  {year:'2028', title:'Global — $147B TAM', body:'全文字体系への展開。IPO or M&A。', status:'future'},
+];
+function renderMilestones(){
+  var t = document.getElementById('stars-timeline');
+  t.innerHTML = '';
+  milestones.forEach(function(m){
+    var tagLabel = m.status==='done'?'達成 ✓':m.status==='now'?'進行中':'予定';
+    t.innerHTML +=
+      '<div class="tl-item">' +
+      '<div class="tl-year">' + m.year + '</div>' +
+      '<div class="tl-dot ' + m.status + '"></div>' +
+      '<div class="tl-content">' +
+      '<div class="tl-title">' + m.title + '</div>' +
+      '<div class="tl-body">' + m.body + '</div>' +
+      '<span class="tl-tag ' + m.status + '">' + tagLabel + '</span>' +
+      '</div></div>';
+  });
+}
+function addMilestone(){
+  var yr    = document.getElementById('ms-year').value.trim();
+  var title = document.getElementById('ms-title').value.trim();
+  var body  = document.getElementById('ms-body').value.trim();
+  var st    = document.getElementById('ms-status').value;
+  if(!yr || !title) return;
+  milestones.push({year:yr, title:title, body:body, status:st});
+  document.getElementById('ms-year').value = '';
+  document.getElementById('ms-title').value = '';
+  document.getElementById('ms-body').value = '';
+  renderMilestones();
+}
+renderMilestones();
+
+// ── SAVE / TOAST ──
+function savePage(page){
+  var toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(function(){ toast.classList.remove('show'); }, 2200);
+}
+</script>
+</body>
+</html>
