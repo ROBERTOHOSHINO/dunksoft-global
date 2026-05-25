@@ -9,351 +9,344 @@
 <style>
 :root{
   --navy:#06101e;--navy2:#0d1f3c;--navy3:#1a3460;
-  --cream:#f7f2e8;--cream2:#ede5d0;--cream3:#ddd0b5;
+  --cream:#f7f2e8;--cream2:#ede5d0;
   --gold:#c49a2a;--gold2:#e8c44a;--gold3:#fae27a;
   --teal:#0a5a48;--teal2:#0f7a60;--teal3:#3dd68c;
   --red:#8b1f1f;
   --ink:#0a0a14;--ink2:#2a2a40;--ink3:#6a6a8a;
   --white:#ffffff;
   --border:rgba(196,154,42,.25);
+  --border2:rgba(255,255,255,.1);
 }
-
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
+body{font-family:'Source Serif 4',serif;background:var(--navy);color:var(--cream);line-height:1.7;overflow-x:hidden;}
 
-body{
-  font-family:'Source Serif 4',serif;
-  background:var(--navy);
-  color:var(--cream);
-  line-height:1.7;
-  overflow-x:hidden;
-}
-
-/* ── STARFIELD ── */
-.bg-stars{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(26,52,96,.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(10,90,72,.3) 0%, transparent 50%),
-    var(--navy);
-}
-.bg-stars::before{
-  content:'';position:absolute;inset:0;
+/* STARS */
+.bg-stars{position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(26,52,96,.4) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 20%,rgba(10,90,72,.3) 0%,transparent 50%),var(--navy);}
+.bg-stars::before{content:'';position:absolute;inset:0;
   background-image:
-    radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 22% 35%, rgba(255,255,255,.35) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 38% 6%, rgba(255,255,255,.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 52% 55%, rgba(255,255,255,.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 67% 20%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 81% 68%, rgba(255,255,255,.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 91% 10%, rgba(255,255,255,.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 14% 72%, rgba(255,255,255,.25) 0%, transparent 100%),
-    radial-gradient(1px 1px at 58% 82%, rgba(255,255,255,.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 33% 50%, rgba(255,255,255,.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 76% 42%, rgba(255,255,255,.35) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 44% 28%, rgba(248,226,122,.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 3% 88%, rgba(255,255,255,.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 96% 75%, rgba(255,255,255,.4) 0%, transparent 100%);
-}
+    radial-gradient(1px 1px at 8% 12%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 22% 35%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 38% 6%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 52% 55%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 67% 20%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 81% 68%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1px 1px at 91% 10%,rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 14% 72%,rgba(255,255,255,.25) 0%,transparent 100%),
+    radial-gradient(1px 1px at 58% 82%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 33% 50%,rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 76% 42%,rgba(255,255,255,.35) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 44% 28%,rgba(248,226,122,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 3% 88%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 96% 75%,rgba(255,255,255,.4) 0%,transparent 100%);}
+.bg-stars::after{content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 18% 22%,rgba(255,255,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 43% 68%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 72% 15%,rgba(255,255,255,.25) 0%,transparent 100%),
+    radial-gradient(1px 1px at 85% 80%,rgba(255,255,255,.2) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 40%,rgba(248,226,122,.3) 0%,transparent 100%);
+  animation:twinkle 5s ease-in-out infinite alternate;}
+@keyframes twinkle{0%{opacity:.6}100%{opacity:1}}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:18px 40px;
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(6,16,30,.85);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav-brand{
-  font-family:'Noto Serif JP',serif;font-size:18px;
-  color:var(--gold2);letter-spacing:2px;
-}
-.nav-brand span{color:rgba(255,255,255,.5);font-size:12px;font-family:'DM Mono',monospace;letter-spacing:3px;display:block;margin-top:1px;}
-.nav-links{display:flex;gap:28px;align-items:center;}
-.nav-links a{
-  color:rgba(247,242,232,.6);font-size:13px;text-decoration:none;
-  font-family:'DM Mono',monospace;letter-spacing:2px;font-size:11px;
-  transition:.2s;
-}
+  background:rgba(6,16,30,.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Noto Serif JP',serif;font-size:17px;color:var(--gold2);letter-spacing:2px;}
+.nav-brand span{color:rgba(255,255,255,.45);font-size:11px;font-family:'DM Mono',monospace;letter-spacing:3px;display:block;margin-top:1px;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:rgba(247,242,232,.55);font-size:11px;text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:2px;transition:.2s;}
 .nav-links a:hover{color:var(--gold2);}
-.nav-cta{
-  background:var(--gold);color:var(--navy);
-  padding:8px 18px;border-radius:3px;font-size:11px;
-  font-family:'DM Mono',monospace;letter-spacing:2px;
-  text-decoration:none;font-weight:500;transition:.15s;
-}
-.nav-cta:hover{background:var(--gold2);color:var(--navy);}
+.nav-cta{background:var(--gold);color:var(--navy);padding:7px 16px;border-radius:3px;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:2px;text-decoration:none;font-weight:500;transition:.15s;}
+.nav-cta:hover{background:var(--gold2);}
 
-/* ── SECTIONS ── */
+/* BADGE STRIP */
+.badge-strip{position:relative;z-index:1;background:rgba(13,31,60,.7);border-bottom:1px solid var(--border);padding:8px 0;overflow:hidden;}
+.badge-scroll{display:flex;gap:32px;animation:scroll-left 28s linear infinite;white-space:nowrap;padding:0 20px;}
+@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.bs-item{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(247,242,232,.45);flex-shrink:0;}
+.bs-item.gold{color:var(--gold2);}
+.bs-item.teal{color:var(--teal3);}
+
+/* SECTIONS */
 section{position:relative;z-index:1;}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;padding:120px 24px 80px;
-}
-.hero-eyebrow{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:6px;
-  color:rgba(196,154,42,.7);margin-bottom:20px;
-  animation:fadeUp .8s ease both;
-}
-.hero-kana{
-  font-family:'Noto Serif JP',serif;font-size:clamp(18px,3vw,24px);
-  color:var(--gold3);letter-spacing:12px;margin-bottom:12px;opacity:.6;
-  animation:fadeUp .8s .1s ease both;
-}
-.hero-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(44px,7vw,88px);font-weight:900;
-  line-height:1.05;color:var(--white);
-  margin-bottom:12px;
-  animation:fadeUp .8s .2s ease both;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:6px;color:rgba(196,154,42,.7);margin-bottom:20px;animation:fadeUp .8s ease both;}
+.hero-kana{font-family:'Noto Serif JP',serif;font-size:clamp(16px,2.5vw,22px);color:var(--gold3);letter-spacing:12px;margin-bottom:12px;opacity:.55;animation:fadeUp .8s .1s ease both;}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6.5vw,82px);font-weight:900;line-height:1.05;color:var(--white);margin-bottom:12px;animation:fadeUp .8s .2s ease both;}
 .hero-h1 em{color:var(--gold2);font-style:italic;}
-.hero-h1 .line2{color:var(--teal3);}
-.hero-sub{
-  font-size:clamp(16px,2vw,20px);
-  color:rgba(247,242,232,.65);
-  max-width:600px;line-height:1.9;margin:0 auto 40px;
-  font-style:italic;
-  animation:fadeUp .8s .3s ease both;
-}
-.hero-badges{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
-  margin-bottom:48px;
-  animation:fadeUp .8s .4s ease both;
-}
-.hbadge{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;
-  padding:6px 14px;border-radius:2px;
-}
+.hero-h1 .l2{color:var(--teal3);}
+.hero-sub{font-size:clamp(15px,1.8vw,19px);color:rgba(247,242,232,.62);max-width:580px;line-height:1.9;margin:0 auto 36px;font-style:italic;animation:fadeUp .8s .3s ease both;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:44px;animation:fadeUp .8s .4s ease both;}
+.hbadge{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;padding:6px 13px;border-radius:2px;}
 .hbadge.yc{background:rgba(250,226,122,.15);color:var(--gold3);border:1px solid rgba(250,226,122,.3);}
 .hbadge.antler{background:rgba(61,214,140,.1);color:var(--teal3);border:1px solid rgba(61,214,140,.25);}
-.hbadge.patent{background:rgba(247,242,232,.08);color:rgba(247,242,232,.6);border:1px solid rgba(247,242,232,.2);}
-.hero-cta{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--gold);color:var(--navy);
-  padding:14px 32px;border-radius:3px;font-size:14px;
-  font-family:'DM Mono',monospace;letter-spacing:2px;font-weight:500;
-  text-decoration:none;transition:.2s;
-  animation:fadeUp .8s .5s ease both;
-}
-.hero-cta:hover{background:var(--gold2);}
-.hero-scroll{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;
-  color:rgba(247,242,232,.3);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  animation:bounce 2s infinite;
-}
+.hbadge.patent{background:rgba(247,242,232,.07);color:rgba(247,242,232,.5);border:1px solid rgba(247,242,232,.18);}
+.hbadge.partner{background:rgba(196,154,42,.2);color:var(--gold2);border:1px solid rgba(196,154,42,.4);}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .5s ease both;}
+.hero-cta-primary{display:inline-block;background:var(--gold);color:var(--navy);padding:13px 30px;border-radius:3px;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:2px;font-weight:500;text-decoration:none;transition:.2s;}
+.hero-cta-primary:hover{background:var(--gold2);}
+.hero-cta-sec{display:inline-block;border:1px solid var(--border);color:var(--cream);padding:13px 30px;border-radius:3px;font-size:13px;font-family:'DM Mono',monospace;letter-spacing:2px;text-decoration:none;transition:.2s;}
+.hero-cta-sec:hover{border-color:var(--gold);color:var(--gold2);}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(247,242,232,.28);display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s infinite;}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── DIVIDER ── */
-.gold-line{
-  height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:0 40px;opacity:.4;
-}
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 40px;opacity:.35;}
 
-/* ── CONTENT SECTIONS ── */
-.content-sec{padding:80px 40px;max-width:1000px;margin:0 auto;}
-.sec-eyebrow{
-  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;
-  color:rgba(196,154,42,.6);margin-bottom:12px;
-}
-.sec-h2{
-  font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,48px);
-  font-weight:700;color:var(--white);margin-bottom:16px;line-height:1.2;
-}
+/* CONTENT */
+.content-sec{padding:72px 40px;max-width:1020px;margin:0 auto;}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:rgba(196,154,42,.6);margin-bottom:10px;}
+.sec-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,3.5vw,46px);font-weight:700;color:var(--white);margin-bottom:14px;line-height:1.2;}
 .sec-h2 em{color:var(--gold2);font-style:italic;}
-.sec-lead{
-  font-size:17px;color:rgba(247,242,232,.7);line-height:1.9;
-  max-width:640px;margin-bottom:40px;font-style:italic;
-}
+.sec-lead{font-size:16px;color:rgba(247,242,232,.65);line-height:1.9;max-width:620px;margin-bottom:36px;font-style:italic;}
 
-/* PRODUCT GRID */
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
-.product-card{
-  padding:32px;background:rgba(13,31,60,.6);
-  border-right:1px solid var(--border);
-  position:relative;overflow:hidden;
-  transition:.3s;
-}
+/* MOMENTUM */
+.momentum-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.mom-item{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;background:rgba(13,31,60,.55);border:1px solid rgba(196,154,42,.15);border-radius:4px;transition:.2s;}
+.mom-item:hover{background:rgba(13,31,60,.8);}
+.mom-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);min-width:72px;padding-top:3px;letter-spacing:1px;flex-shrink:0;}
+.mom-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.mom-dot.live{background:var(--teal3);}
+.mom-dot.gold{background:var(--gold2);}
+.mom-dot.blue{background:#6ab4ff;}
+.mom-content{flex:1;}
+.mom-title{font-size:14px;font-weight:400;color:var(--white);margin-bottom:3px;line-height:1.5;}
+.mom-body{font-size:12px;color:rgba(247,242,232,.52);line-height:1.75;}
+.mom-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:2px;flex-shrink:0;align-self:flex-start;margin-top:2px;}
+.mom-tag.live{background:rgba(61,214,140,.15);color:var(--teal3);}
+.mom-tag.pending{background:rgba(196,154,42,.15);color:var(--gold2);}
+.mom-tag.new{background:rgba(106,180,255,.15);color:#6ab4ff;}
+
+/* PRODUCTS */
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:20px;}
+.product-card{padding:28px;background:rgba(13,31,60,.6);border-right:1px solid var(--border);position:relative;overflow:hidden;transition:.3s;}
 .product-card:last-child{border-right:none;}
-.product-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--ac,var(--gold));opacity:.6;
-}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--gold));opacity:.7;}
 .product-card:hover{background:rgba(13,31,60,.9);}
-.product-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(196,154,42,.5);margin-bottom:12px;}
-.product-jp{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--gold2);margin-bottom:4px;letter-spacing:4px;}
-.product-en{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:rgba(247,242,232,.6);margin-bottom:16px;}
-.product-desc{font-size:14px;color:rgba(247,242,232,.65);line-height:1.9;}
-.product-tag{
-  display:inline-block;margin-top:14px;
-  font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;
-  padding:4px 10px;border-radius:2px;
-  background:rgba(196,154,42,.15);color:var(--gold2);border:1px solid rgba(196,154,42,.3);
-}
+.product-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(196,154,42,.45);margin-bottom:10px;}
+.product-jp{font-family:'Noto Serif JP',serif;font-size:20px;color:var(--gold2);margin-bottom:3px;letter-spacing:4px;}
+.product-en{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:rgba(247,242,232,.55);margin-bottom:14px;}
+.product-desc{font-size:13px;color:rgba(247,242,232,.62);line-height:1.9;}
+.product-tag{display:inline-block;margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 9px;border-radius:2px;background:rgba(196,154,42,.13);color:var(--gold2);border:1px solid rgba(196,154,42,.28);}
 
 /* INSIGHT */
-.insight-box{
-  background:rgba(13,31,60,.7);border:1px solid var(--border);
-  border-radius:4px;padding:32px 36px;margin-bottom:28px;
-  position:relative;overflow:hidden;
-}
-.insight-box::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--gold),var(--teal2));
-}
-.insight-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;}
-.insight-text{font-size:16px;color:rgba(247,242,232,.8);line-height:1.9;font-style:italic;}
+.insight-box{background:rgba(13,31,60,.7);border:1px solid var(--border);border-radius:4px;padding:28px 32px;margin-bottom:20px;position:relative;overflow:hidden;}
+.insight-box::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--gold),var(--teal2));}
+.insight-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;}
+.insight-text{font-size:15px;color:rgba(247,242,232,.78);line-height:1.9;font-style:italic;}
 .insight-text strong{color:var(--white);font-style:normal;}
 
-/* TRACTION GRID */
-.traction-grid{display:grid;grid-template-columns:1fr;gap:12px;}
-.tr-item{
-  display:flex;gap:16px;align-items:flex-start;
-  padding:16px 20px;background:rgba(13,31,60,.5);
-  border:1px solid rgba(196,154,42,.15);border-radius:4px;
-}
+/* PARTNER BOX */
+.partner-box{background:linear-gradient(135deg,rgba(26,52,96,.9),rgba(10,90,72,.5));border:1px solid rgba(196,154,42,.35);border-radius:6px;padding:28px 32px;margin-bottom:20px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;}
+.partner-amount{text-align:center;flex-shrink:0;}
+.partner-num{font-family:'Playfair Display',serif;font-size:44px;color:var(--gold2);line-height:1;font-weight:700;}
+.partner-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(247,242,232,.4);margin-top:4px;}
+.partner-body{font-size:14px;color:rgba(247,242,232,.72);line-height:1.9;}
+.partner-body strong{color:var(--white);}
+
+/* STAT STRIP */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin:36px 0;}
+.stat-item{padding:22px;border-right:1px solid var(--border);text-align:center;background:rgba(13,31,60,.5);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold2);line-height:1;margin-bottom:4px;}
+.stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(247,242,232,.4);}
+
+/* TRACTION */
+.tr-item{display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:rgba(13,31,60,.5);border:1px solid rgba(196,154,42,.13);border-radius:4px;margin-bottom:10px;}
 .tr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
 .tr-dot.live{background:var(--teal3);}
 .tr-dot.pipe{background:var(--gold2);}
+.tr-dot.blue{background:#6ab4ff;}
 .tr-content{flex:1;}
-.tr-title{font-size:14px;font-weight:400;color:var(--white);margin-bottom:2px;}
-.tr-body{font-size:13px;color:rgba(247,242,232,.55);line-height:1.7;}
-.tr-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:2px;flex-shrink:0;margin-top:4px;}
+.tr-title{font-size:14px;color:var(--white);margin-bottom:2px;}
+.tr-body{font-size:12px;color:rgba(247,242,232,.5);line-height:1.7;}
+.tr-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 8px;border-radius:2px;flex-shrink:0;}
 .tr-tag.live{background:rgba(61,214,140,.15);color:var(--teal3);}
 .tr-tag.pipe{background:rgba(196,154,42,.15);color:var(--gold2);}
+.tr-tag.new{background:rgba(106,180,255,.15);color:#6ab4ff;}
 
-/* STAT STRIP */
-.stat-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border:1px solid var(--border);border-radius:4px;overflow:hidden;
-  margin:40px 0;
-}
-.stat-item{
-  padding:24px;border-right:1px solid var(--border);text-align:center;
-  background:rgba(13,31,60,.5);
-}
-.stat-item:last-child{border-right:none;}
-.stat-num{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold2);line-height:1;margin-bottom:4px;}
-.stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(247,242,232,.45);}
+/* WHY GRID */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:24px;}
+.why-card{padding:22px;background:rgba(13,31,60,.5);}
+.why-icon{font-size:26px;margin-bottom:9px;}
+.why-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:7px;}
+.why-text{font-size:13px;color:rgba(247,242,232,.6);line-height:1.8;}
 
 /* FOUNDER */
-.founder-card{
-  display:grid;grid-template-columns:auto 1fr;gap:28px;
-  align-items:start;padding:32px;
-  background:rgba(13,31,60,.6);border:1px solid var(--border);border-radius:4px;
-}
-.founder-avatar{
-  width:72px;height:72px;border-radius:50%;
-  background:linear-gradient(135deg,var(--navy3),var(--teal));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Noto Serif JP',serif;font-size:20px;color:var(--gold2);
-  border:2px solid var(--border);flex-shrink:0;
-}
-.founder-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:2px;}
-.founder-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:12px;}
-.founder-bio{font-size:14px;color:rgba(247,242,232,.65);line-height:1.9;}
-.founder-quote{
-  margin-top:14px;padding:12px 16px;border-left:2px solid var(--gold);
-  font-style:italic;font-size:15px;color:rgba(247,242,232,.75);
-  background:rgba(196,154,42,.05);
-}
+.founder-card{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;padding:28px;background:rgba(13,31,60,.6);border:1px solid var(--border);border-radius:4px;}
+.founder-avatar{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--navy3),var(--teal));display:flex;align-items:center;justify-content:center;font-family:'Noto Serif JP',serif;font-size:18px;color:var(--gold2);border:2px solid var(--border);flex-shrink:0;}
+.founder-name{font-family:'Playfair Display',serif;font-size:21px;color:var(--white);margin-bottom:2px;}
+.founder-role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:10px;}
+.founder-bio{font-size:13px;color:rgba(247,242,232,.62);line-height:1.9;}
+.founder-quote{margin-top:12px;padding:11px 15px;border-left:2px solid var(--gold);font-style:italic;font-size:15px;color:rgba(247,242,232,.75);background:rgba(196,154,42,.05);}
 
-/* WHY JAPAN */
-.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:28px;}
-.why-card{padding:24px;background:rgba(13,31,60,.5);}
-.why-icon{font-size:28px;margin-bottom:10px;}
-.why-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
-.why-text{font-size:13px;color:rgba(247,242,232,.65);line-height:1.8;}
-
-/* CTA SECTION */
-.cta-section{
-  padding:80px 40px;text-align:center;
-  background:linear-gradient(180deg,transparent,rgba(10,90,72,.15));
-}
-.cta-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);color:var(--white);margin-bottom:16px;}
+/* CTA */
+.cta-section{padding:72px 40px;text-align:center;background:linear-gradient(180deg,transparent,rgba(10,90,72,.12));}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,42px);color:var(--white);margin-bottom:14px;}
 .cta-title em{color:var(--gold2);font-style:italic;}
-.cta-sub{font-size:16px;color:rgba(247,242,232,.6);margin-bottom:36px;font-style:italic;line-height:1.9;}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.cta-btn-primary{
-  background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:3px;
-  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:500;
-  text-decoration:none;transition:.15s;
-}
-.cta-btn-primary:hover{background:var(--gold2);}
-.cta-btn-secondary{
-  border:1px solid var(--border);color:var(--cream);padding:14px 32px;border-radius:3px;
-  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;
-  text-decoration:none;transition:.15s;
-}
-.cta-btn-secondary:hover{border-color:var(--gold);color:var(--gold2);}
+.cta-sub{font-size:15px;color:rgba(247,242,232,.58);margin-bottom:32px;font-style:italic;line-height:1.9;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-btn-p{background:var(--gold);color:var(--navy);padding:13px 30px;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;font-weight:500;text-decoration:none;transition:.15s;}
+.cta-btn-p:hover{background:var(--gold2);}
+.cta-btn-s{border:1px solid var(--border);color:var(--cream);padding:13px 30px;border-radius:3px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-decoration:none;transition:.15s;}
+.cta-btn-s:hover{border-color:var(--gold);color:var(--gold2);}
 
 /* FOOTER */
-footer{
-  border-top:1px solid var(--border);padding:28px 40px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  background:rgba(6,16,30,.8);
-}
-.footer-brand{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(247,242,232,.35);}
-.footer-right{font-size:12px;color:rgba(247,242,232,.3);font-style:italic;}
+footer{border-top:1px solid var(--border);padding:24px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:rgba(6,16,30,.8);}
+.footer-brand{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(247,242,232,.3);}
+.footer-right{font-size:12px;color:rgba(247,242,232,.28);font-style:italic;}
 
 @media(max-width:640px){
-  nav{padding:14px 20px;}
-  .nav-links{display:none;}
-  .content-sec{padding:60px 20px;}
-  .product-grid{grid-template-columns:1fr;}
-  .why-grid{grid-template-columns:1fr;}
+  nav{padding:12px 18px;}.nav-links{display:none;}
+  .content-sec{padding:52px 18px;}
+  .product-grid,.why-grid{grid-template-columns:1fr;}
   .stat-strip{grid-template-columns:1fr 1fr;}
-  .founder-card{grid-template-columns:1fr;}
-  .cta-section{padding:60px 20px;}
-  footer{padding:20px;}
+  .founder-card,.partner-box{grid-template-columns:1fr;}
+  .cta-section{padding:52px 18px;}
+  footer{padding:18px;}
 }
 </style>
 </head>
 <body>
-
 <div class="bg-stars"></div>
+
+<!-- BADGE STRIP -->
+<div class="badge-strip" style="padding-top:0;margin-top:0;">
+  <div class="badge-scroll">
+    <span class="bs-item gold">✦ YC SUMMER 2026 — RESULT: JUNE 5</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item teal">✦ ANTLER JAPAN BATCH 5 — POSITIVE FIRST MEETING</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item gold">✦ ANTHROPIC CLAUDE PARTNER PROGRAM — APPLYING</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item">CODE WITH CLAUDE TOKYO · JUNE 10</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item teal">✦ NRI × METI DIVERSITY REPORT — CONFIRMED</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item gold">✦ YC SUMMER 2026 — RESULT: JUNE 5</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item teal">✦ ANTLER JAPAN BATCH 5 — POSITIVE FIRST MEETING</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item gold">✦ ANTHROPIC CLAUDE PARTNER PROGRAM — APPLYING</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item">CODE WITH CLAUDE TOKYO · JUNE 10</span>
+    <span class="bs-item">·</span>
+    <span class="bs-item teal">✦ NRI × METI DIVERSITY REPORT — CONFIRMED</span>
+    <span class="bs-item">·</span>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    ダンクソフト
-    <span>DUNKSOFT Co., Ltd.</span>
-  </div>
+  <div class="nav-brand">ダンクソフト<span>DUNKSOFT Co., Ltd.</span></div>
   <div class="nav-links">
+    <a href="#momentum">Momentum</a>
     <a href="#products">Products</a>
-    <a href="#traction">Traction</a>
+    <a href="#partner">Partner</a>
     <a href="#founder">Founder</a>
-    <a href="#why-japan">Why Japan</a>
+    <a href="#contact">Invest</a>
     <a class="nav-cta" href="#contact">Investor Inquiry →</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-eyebrow">DUNKSOFT Co., Ltd. · Est. 1983 · Tokyo · Tokushima</div>
-  <div class="hero-kana">天 測 · 未 来</div>
+  <div class="hero-eyebrow">DUNKSOFT Co., Ltd. · Est. 1983 · Tokyo · Tokushima · 43 Years</div>
+  <div class="hero-kana">天 測 · 彩 · 未 来</div>
   <h1 class="hero-h1">
     Japan's <em>cultural memory</em><br>
-    <span class="line2">is the password.</span>
+    <span class="l2">is the password.</span>
   </h1>
   <p class="hero-sub">
     We built authentication on 2,000 years of written language —<br>
-    the one security primitive that Big Tech cannot clone.
+    the one security primitive that Big Tech cannot clone.<br>
+    Now building with Anthropic. Co-created with Claude.
   </p>
   <div class="hero-badges">
-    <span class="hbadge yc">✦ YC SUMMER 2026 — SUBMITTED</span>
-    <span class="hbadge antler">✦ ANTLER JAPAN JPN6 — SUBMITTED</span>
-    <span class="hbadge patent">PCT PATENT FILING IN PROGRESS</span>
+    <span class="hbadge yc">YC SUMMER 2026</span>
+    <span class="hbadge antler">ANTLER JAPAN BATCH 5</span>
+    <span class="hbadge partner">✦ ANTHROPIC PARTNER — APPLYING</span>
+    <span class="hbadge patent">PCT PATENT PENDING</span>
   </div>
-  <a href="#products" class="hero-cta">Explore TENSOKU AUTH™ →</a>
+  <div class="hero-ctas">
+    <a href="#momentum" class="hero-cta-primary">See Our Momentum →</a>
+    <a href="#products" class="hero-cta-sec">Explore Products</a>
+  </div>
   <div class="hero-scroll">SCROLL ↓</div>
+</section>
+
+<div class="gold-line"></div>
+
+<!-- MOMENTUM -->
+<section id="momentum">
+  <div class="content-sec">
+    <div class="sec-eyebrow">LIVE MOMENTUM · 直近の動き</div>
+    <h2 class="sec-h2">Everything is moving.<br><em>Right now.</em></h2>
+    <p class="sec-lead">May 2026 — multiple signals converging simultaneously.</p>
+
+    <div class="momentum-grid">
+      <div class="mom-item">
+        <div class="mom-date">2026.05.25</div>
+        <div class="mom-dot gold"></div>
+        <div class="mom-content">
+          <div class="mom-title">Mitsubishi UFJ Bank, Jimbocho Branch — Direct message from Branch Manager Yamanaka</div>
+          <div class="mom-body">Following an invitation to the Kanda Ai-no-Kai radio program, Branch Manager Yamanaka sent a personal thank-you. The relationship has evolved from institutional to human. A face-to-face meeting is being arranged.</div>
+        </div>
+        <span class="mom-tag new">NEW</span>
+      </div>
+      <div class="mom-item">
+        <div class="mom-date">2026.05.25</div>
+        <div class="mom-dot live"></div>
+        <div class="mom-content">
+          <div class="mom-title">NRI × Ministry of Economy — Diversity Case Study Confirmed</div>
+          <div class="mom-body">Selected as one of 10 companies for the Nomura Research Institute × METI report on diversity and foreign talent. NRI consultant Toshiki Ichibara noted personal resonance as a "visual thinker" with CHROMAKEY AUTH™'s approach.</div>
+        </div>
+        <span class="mom-tag live">CONFIRMED</span>
+      </div>
+      <div class="mom-item">
+        <div class="mom-date">2026.05</div>
+        <div class="mom-dot gold"></div>
+        <div class="mom-content">
+          <div class="mom-title">Antler Japan Batch 5 — First Interview: Positive</div>
+          <div class="mom-body">Positive reaction from Scouting Manager Hoshi Satomi. Co-founder matching session invited. Profile sought: Marketing + Finance (engineering not required).</div>
+        </div>
+        <span class="mom-tag pending">IN PROGRESS</span>
+      </div>
+      <div class="mom-item">
+        <div class="mom-date">2026.04.17</div>
+        <div class="mom-dot live"></div>
+        <div class="mom-content">
+          <div class="mom-title">Y Combinator Summer 2026 — Application Submitted</div>
+          <div class="mom-body">Applied with kanji × HEX color = 128-bit authentication token architecture. Result announced June 5, 2026.</div>
+        </div>
+        <span class="mom-tag pending">RESULT: JUNE 5</span>
+      </div>
+      <div class="mom-item">
+        <div class="mom-date">2026.02.24</div>
+        <div class="mom-dot live"></div>
+        <div class="mom-content">
+          <div class="mom-title">Day 1 with Claude — 85 Days to Live Authentication System</div>
+          <div class="mom-body">From first conversation to live authentication architecture in 85 days. Co-created entirely with Claude. The fastest product build in DUNKSOFT's 43-year history.</div>
+        </div>
+        <span class="mom-tag live">LIVE</span>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-item"><div class="stat-num">85</div><div class="stat-label">DAYS · ZERO TO LIVE AUTH</div></div>
+      <div class="stat-item"><div class="stat-num">43</div><div class="stat-label">YEARS OPERATING</div></div>
+      <div class="stat-item"><div class="stat-num">June 5</div><div class="stat-label">YC RESULT DATE</div></div>
+      <div class="stat-item"><div class="stat-num">$147B</div><div class="stat-label">GLOBAL TAM</div></div>
+    </div>
+  </div>
 </section>
 
 <div class="gold-line"></div>
@@ -362,36 +355,37 @@ footer{
 <section id="products">
   <div class="content-sec">
     <div class="sec-eyebrow">OUR PRODUCTS · プロダクト</div>
-    <h2 class="sec-h2">Two tools.<br><em>One philosophy.</em></h2>
-    <p class="sec-lead">
-      "Who are you?" and "Where are you going?" — the two fundamental questions every person faces.
-      We answer both with the depth of Japanese written language.
-    </p>
+    <h2 class="sec-h2">Two questions.<br><em>Two products.</em></h2>
+    <p class="sec-lead">"Who are you?" and "Where are you going?" — answered with the depth of Japanese written language.</p>
 
     <div class="product-grid">
       <div class="product-card" style="--ac:var(--gold2);">
-        <div class="product-num">01 / AUTHENTICATION</div>
+        <div class="product-num">01 · AUTHENTICATION</div>
         <div class="product-jp">天然色文字</div>
-        <div class="product-en">TENSOKU AUTH™</div>
-        <div class="product-desc">
-          Replace passwords with color-coded kanji patterns.
-          Authentication rooted in cultural memory — impossible to phish,
-          impossible to clone, works for an 80-year-old grandmother on her first try.
-          Drop-in SDK for kintone, healthcare, securities, and any SaaS platform.
-        </div>
+        <div class="product-en">CHROMAKEY AUTH™ · TENSOKU AUTH™</div>
+        <div class="product-desc">Replace passwords with color-coded kanji patterns. Authentication rooted in cultural memory — impossible to phish, impossible to clone. Kanji × HEX color = 128-bit authentication token. Works for a 91-year-old on her first try. Drop-in API for kintone, healthcare, securities, and any SaaS platform.</div>
         <span class="product-tag">WHO ARE YOU? · あなたは誰か</span>
       </div>
       <div class="product-card" style="--ac:var(--teal3);">
-        <div class="product-num">02 / LIFE NAVIGATION</div>
+        <div class="product-num">02 · LIFE NAVIGATION</div>
         <div class="product-jp">未来通帳</div>
         <div class="product-en">Future Log · TENSOKU Life</div>
-        <div class="product-desc">
-          Inspired by French maritime journals — a living logbook where you write
-          your destination, chart your skills, and provision your finances.
-          Like Shohei Ohtani's mandala chart, but for your entire life voyage.
-          Pairs with TENSOKU AUTH™ for secure, private, lifelong journaling.
-        </div>
+        <div class="product-desc">Inspired by French maritime journals — a living logbook where you write your destination, chart your skills, and provision your finances. Like Shohei Ohtani's mandala chart, but for your entire life voyage. Pairs with CHROMAKEY AUTH™ for secure, private, lifelong journaling.</div>
         <span class="product-tag">WHERE ARE YOU GOING? · どこへ向かうか</span>
+      </div>
+      <div class="product-card" style="--ac:#6ab4ff;">
+        <div class="product-num">03 · AI PLATFORM</div>
+        <div class="product-jp">Mythos</div>
+        <div class="product-en">Mythos · Claude-Powered Intelligence</div>
+        <div class="product-desc">Claude API integrated into DUNKSOFT's enterprise platform. Enabling organizations — from 91-year-old researchers to regional banks — to work with AI through a culturally familiar, authenticated interface. The bridge between Japan's legacy knowledge and AI's capabilities.</div>
+        <span class="product-tag">AI × CULTURAL DEPTH · 深さ</span>
+      </div>
+      <div class="product-card" style="--ac:var(--gold);">
+        <div class="product-num">04 · MEMORY</div>
+        <div class="product-jp">記憶の銀行</div>
+        <div class="product-en">MEMORY-BANK™</div>
+        <div class="product-desc">Institutional and personal memory, authenticated and organized through CHROMAKEY AUTH™. Built for the Kanda Academic Society's 91-year-old researcher Kubo-san — whose decades of knowledge deserve to be accessed, not lost. Japan's answer to the knowledge preservation crisis.</div>
+        <span class="product-tag">MEMORY × AUTHENTICATION · 記憶</span>
       </div>
     </div>
   </div>
@@ -399,31 +393,34 @@ footer{
 
 <div class="gold-line"></div>
 
-<!-- NON-OBVIOUS INSIGHT -->
-<section>
+<!-- ANTHROPIC PARTNER -->
+<section id="partner">
   <div class="content-sec">
-    <div class="sec-eyebrow">THE INSIGHT · 非自明な洞察</div>
-    <div class="insight-box">
-      <div class="insight-title">WHY JAPANESE SCRIPT IS THE LAST MOAT IN AUTHENTICATION</div>
-      <div class="insight-text">
-        Japanese is the only writing system on earth that simultaneously combines
-        <strong>logographic (kanji · 漢字)</strong>,
-        <strong>syllabic (hiragana · ひらがな / katakana · カタカナ)</strong>, and
-        <strong>phonetic annotation (furigana · ふりがな)</strong> layers.
-        This multi-dimensional structure creates an authentication space of extraordinary density —
-        one encoded in <strong>2,000 years of cultural memory</strong>, not training data.
-        Western AI cannot reproduce it. And the same mechanism extends to Latin, Arabic, and Devanagari —
-        making this a <strong>$147B global TAM play</strong> that starts from an unassailable Japanese moat.
+    <div class="sec-eyebrow">ANTHROPIC CLAUDE PARTNER PROGRAM · パートナー</div>
+    <h2 class="sec-h2">Built <em>with</em> Claude.<br>Now partnering with Anthropic.</h2>
+    <p class="sec-lead">85 days of co-creation — from first conversation to live authentication system. Now formalizing the relationship.</p>
+
+    <div class="partner-box">
+      <div class="partner-amount">
+        <div class="partner-num">$100M</div>
+        <div class="partner-label">PARTNER SUPPORT FUND</div>
+      </div>
+      <div class="partner-body">
+        Anthropic's Claude Partner Program recognizes companies building products with Claude at their core. DUNKSOFT is applying as the <strong>world's first kanji-based authentication company co-built with Claude</strong>. The $100M partner support fund — combining API credits, technical access, and potential direct investment — positions DUNKSOFT's Series B+ within the global AI ecosystem. <strong>Code with Claude Tokyo on June 10</strong> will be our first public demonstration to the Japanese AI developer community.
       </div>
     </div>
-    <div class="insight-box" style="border-left:none;border-right:3px solid var(--teal2);">
-      <div class="insight-title">WHY JAPAN IS SAFE — AND WHY THE WORLD IS WATCHING</div>
+
+    <div class="insight-box">
+      <div class="insight-title">THE KUBO-SAN STORY — WHY THIS MATTERS</div>
       <div class="insight-text">
-        Japan is experiencing a trust renaissance. <strong>The world's most secure, stable, and culturally coherent nation</strong>
-        is now also one of its most technologically innovative.
-        As global uncertainty rises, international investors, institutions, and enterprises are actively seeking
-        Japan-origin technology as a foundation for their digital infrastructure.
-        DUNKSOFT has been building that foundation — quietly, faithfully — for <strong>43 years</strong>.
+        Kubo-san is 91 years old. She holds decades of irreplaceable knowledge as a researcher at the Kanda Academic Society. She cannot use conventional digital authentication. <strong>CHROMAKEY AUTH™ removes that barrier</strong> — color-coded kanji she has known for 80 years become her password. This is not a niche use case. This is Japan's most urgent digital inclusion challenge, and it will be every country's challenge within a generation.
+      </div>
+    </div>
+
+    <div class="insight-box" style="border-left-color:var(--teal2);">
+      <div class="insight-title">NRI CONSULTANT'S RESPONSE — "I RESONATE AS A VISUAL THINKER"</div>
+      <div class="insight-text">
+        When Nomura Research Institute consultant Ichibara encountered CHROMAKEY AUTH™, his response was not analytical — it was personal. <strong>"I resonate with this as a visual thinker."</strong> When a senior NRI consultant self-discloses this way, and when a Mitsubishi UFJ branch manager sends a personal thank-you after a radio appearance, it signals something beyond product-market fit. It signals <strong>cultural resonance</strong> — the deepest form of adoption signal.
       </div>
     </div>
   </div>
@@ -435,68 +432,65 @@ footer{
 <section id="traction">
   <div class="content-sec">
     <div class="sec-eyebrow">TRACTION · 実績</div>
-    <h2 class="sec-h2">43 years of trust.<br><em>Now converting to revenue.</em></h2>
+    <h2 class="sec-h2">43 years of trust.<br><em>Now converting.</em></h2>
 
-    <div class="stat-strip">
-      <div class="stat-item">
-        <div class="stat-num">43</div>
-        <div class="stat-label">YEARS IN OPERATION</div>
+    <div class="tr-item">
+      <div class="tr-dot blue"></div>
+      <div class="tr-content">
+        <div class="tr-title">Mitsubishi UFJ Bank, Jimbocho Branch — Relationship Deepening</div>
+        <div class="tr-body">Branch Manager Yamanaka's personal outreach following a radio appearance. The path from community trust to financial institution partnership is opening.</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">¥0</div>
-        <div class="stat-label">EXTERNAL CAPITAL TO DATE</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">Q2'26</div>
-        <div class="stat-label">FIRST PILOT LIVE</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">$147B</div>
-        <div class="stat-label">GLOBAL TAM</div>
-      </div>
+      <span class="tr-tag new">MAY 2026</span>
     </div>
+    <div class="tr-item">
+      <div class="tr-dot live"></div>
+      <div class="tr-content">
+        <div class="tr-title">NRI × METI — Diversity Case Study (10 companies nationally selected)</div>
+        <div class="tr-body">Confirmed inclusion in the national diversity and foreign talent report. NRI consultant expressed personal resonance with the visual-thinking authentication approach.</div>
+      </div>
+      <span class="tr-tag live">CONFIRMED</span>
+    </div>
+    <div class="tr-item">
+      <div class="tr-dot pipe"></div>
+      <div class="tr-content">
+        <div class="tr-title">Tokushima Godo Securities — Pilot Onboarding Q2 2026</div>
+        <div class="tr-body">First paying customer. 43-year trust relationship converted. The beachhead for Japan's securities industry rollout and the path to Japan Securities Dealers Association standard adoption.</div>
+      </div>
+      <span class="tr-tag live">LIVE PILOT</span>
+    </div>
+    <div class="tr-item">
+      <div class="tr-dot pipe"></div>
+      <div class="tr-content">
+        <div class="tr-title">Mutsumi Hospital + Tokushima Medical Vocational School</div>
+        <div class="tr-body">Both proposals submitted simultaneously. kintone infrastructure already in place — CHROMAKEY AUTH™ is the only addition needed. Two organizations, one proposal cycle.</div>
+      </div>
+      <span class="tr-tag pipe">PIPELINE</span>
+    </div>
+    <div class="tr-item">
+      <div class="tr-dot live"></div>
+      <div class="tr-content">
+        <div class="tr-title">kintone After-School Care System — Existing Deployed Customers</div>
+        <div class="tr-body">Hanamaru Gakudo (Ishigaki Island) and others. Auth layer ready to add to an existing customer base — zero new sales required for initial rollout.</div>
+      </div>
+      <span class="tr-tag live">EXISTING BASE</span>
+    </div>
+  </div>
+</section>
 
-    <div class="traction-grid">
-      <div class="tr-item">
-        <div class="tr-dot live"></div>
-        <div class="tr-content">
-          <div class="tr-title">Tokushima Godo Securities — Pilot Live, Q2 2026</div>
-          <div class="tr-body">First paying customer. A 43-year trust relationship converted to a signed contract in a single conversation. The beachhead for Japan's securities industry rollout.</div>
-        </div>
-        <span class="tr-tag live">LIVE</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-dot pipe"></div>
-        <div class="tr-content">
-          <div class="tr-title">Mutsumi Hospital, Tokushima — Proposal Submitted</div>
-          <div class="tr-body">kintone infrastructure already in place. TENSOKU AUTH™ is the only addition needed — patient authentication and staff login. Directly addresses Japan's My Number Card stagnation at senior facilities.</div>
-        </div>
-        <span class="tr-tag pipe">PIPELINE</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-dot pipe"></div>
-        <div class="tr-content">
-          <div class="tr-title">Tokushima Medical Vocational School — Proposal Submitted</div>
-          <div class="tr-body">Color-coded Japanese™ for medical terminology learning. Two organizations, one proposal cycle — the education and healthcare verticals unlocked simultaneously.</div>
-        </div>
-        <span class="tr-tag pipe">PIPELINE</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-dot live"></div>
-        <div class="tr-content">
-          <div class="tr-title">kintone After-School Care System — Existing Deployed Customers</div>
-          <div class="tr-body">Hanamaru Gakudo (Ishigaki Island) and others. TENSOKU AUTH™ adds the authentication layer to an existing customer base — zero new sales required.</div>
-        </div>
-        <span class="tr-tag live">EXISTING BASE</span>
-      </div>
-      <div class="tr-item">
-        <div class="tr-dot pipe"></div>
-        <div class="tr-content">
-          <div class="tr-title">Shinkyosha + Sanseido Network — Educational Publishing Partnership</div>
-          <div class="tr-body">Re-engaged at CybozuDays after a 2000-era consulting relationship. Color-coded Japanese™ curriculum content — the bridge between authentication and language learning.</div>
-        </div>
-        <span class="tr-tag pipe">IN DISCUSSION</span>
-      </div>
+<div class="gold-line"></div>
+
+<!-- WHY JAPAN -->
+<section id="why-japan">
+  <div class="content-sec">
+    <div class="sec-eyebrow">WHY JAPAN · NOW · なぜ今、日本か</div>
+    <h2 class="sec-h2">Safe. Trusted. <em>Suddenly global.</em></h2>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-icon">🏯</div><div class="why-title">TRUST & STABILITY</div><div class="why-text">As geopolitical instability rises globally, Japan is recognized as one of the world's most secure, stable, and rule-of-law-governed nations. Institutions trust Japanese-origin technology.</div></div>
+      <div class="why-card"><div class="why-icon">👴</div><div class="why-title">AGING IS THE PREVIEW</div><div class="why-text">Japan is 30 years ahead of the world in aging demographics. Every authentication problem Japan solves today is the global problem of 2035. Kubo-san (91) is the user persona for tomorrow's world.</div></div>
+      <div class="why-card"><div class="why-icon">⛩️</div><div class="why-title">CULTURAL DEPTH AS IP</div><div class="why-text">2,000 years of written language. No AI model trained on Western data can reproduce what a Japanese reader feels when they see colored kanji. That feeling is the patent.</div></div>
+      <div class="why-card"><div class="why-icon">🌐</div><div class="why-title">KANJI ZONE = 1.5B USERS</div><div class="why-text">Japan, China, Taiwan, Korea — the kanji-using world is 1.5 billion people. CHROMAKEY AUTH™'s beachhead here unlocks the largest culturally coherent authentication market on earth.</div></div>
+      <div class="why-card"><div class="why-icon">🤖</div><div class="why-title">AI × CULTURAL MEMORY</div><div class="why-text">Claude + DUNKSOFT = the only AI co-built authentication system rooted in non-Western cultural cognition. Anthropic's global reach + Japan's cultural depth = an unreplicable combination.</div></div>
+      <div class="why-card"><div class="why-icon">🏦</div><div class="why-title">FINANCIAL INFRASTRUCTURE</div><div class="why-text">From regional securities firms to Mitsubishi UFJ Bank — Japan's financial sector is actively seeking authentication modernization. CHROMAKEY AUTH™ is the culturally appropriate answer.</div></div>
     </div>
   </div>
 </section>
@@ -508,74 +502,20 @@ footer{
   <div class="content-sec">
     <div class="sec-eyebrow">THE FOUNDER · 創業者</div>
     <h2 class="sec-h2">He didn't <em>discover</em> the problem.<br>He witnessed it for 43 years.</h2>
-
     <div class="founder-card">
       <div class="founder-avatar">星野</div>
       <div>
-        <div class="founder-name">Koichiro Hoshino · 星野 晃一郎</div>
-        <div class="founder-role">PRESIDENT & CEO · DUNKSOFT Co., Ltd.</div>
+        <div class="founder-name">Koichiro (Roberto) Hoshino · 星野 晃一郎</div>
+        <div class="founder-role">PRESIDENT & CEO · DUNKSOFT Co., Ltd. · Est. 1983</div>
         <div class="founder-bio">
-          In 1983, an engineer named AIDA founded DUNKSOFT with a dream of building robots that protect people —
-          inspired by Astro Boy. Three years later, he died suddenly after a failed surgery.
-          Hoshino, then a 2nd-year employee, was asked by AIDA's family to carry the company forward.
-          He had been planning to go to America. Instead, he stayed.
-          <br><br>
-          43 years later — having built digital infrastructure for Japanese healthcare, finance, education,
-          and local governments — he applied simultaneously to Y Combinator and Antler Japan.
-          It is the first time external capital has ever entered DUNKSOFT.
-          <br><br>
-          The dream of going to America, deferred for 38 years, is now being realized in the best possible form.
+          In 1983, an engineer named AIDA founded DUNKSOFT with a dream of building robots that protect people — inspired by Astro Boy. Three years later, he died suddenly. Hoshino, then a 2nd-year employee, was asked by AIDA's family to carry the company forward. He had been planning to go to America. Instead, he stayed.<br><br>
+          43 years later — having built digital infrastructure for Japanese healthcare, finance, education, and local governments — he applied simultaneously to Y Combinator and Antler Japan, while pursuing the Anthropic Claude Partner Program. It is the first time external capital has ever entered DUNKSOFT.<br><br>
+          On February 24, 2026, he began his first conversation with Claude. 85 days later, a live authentication system existed. The dream of going to America, deferred for 38 years, is now being realized in the best possible form.
         </div>
         <div class="founder-quote">
-          "I did not discover this problem. I witnessed it for 43 years."<br>
-          <span style="font-size:12px;font-style:normal;color:rgba(247,242,232,.45);font-family:'DM Mono',monospace;letter-spacing:1px;margin-top:6px;display:block;">— Koichiro Hoshino, YC Application, April 2026</span>
+          "I did not discover this problem. I witnessed it for 43 years."
+          <span style="display:block;font-size:11px;font-style:normal;color:rgba(247,242,232,.4);font-family:'DM Mono',monospace;letter-spacing:1px;margin-top:6px;">— Koichiro Hoshino · YC Application · April 2026</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="gold-line"></div>
-
-<!-- WHY JAPAN NOW -->
-<section id="why-japan">
-  <div class="content-sec">
-    <div class="sec-eyebrow">WHY JAPAN · NOW · なぜ今、日本か</div>
-    <h2 class="sec-h2">Safe. Stable. <em>Suddenly global.</em></h2>
-    <p class="sec-lead">
-      Japan is experiencing a quiet revolution — and the world has started to notice.
-    </p>
-
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🏯</div>
-        <div class="why-title">TRUST & SAFETY</div>
-        <div class="why-text">As geopolitical instability rises globally, Japan is recognized as one of the world's most secure, stable, and rule-of-law-governed nations. Institutions trust Japanese-origin technology.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">👴</div>
-        <div class="why-title">AGING IS THE PREVIEW</div>
-        <div class="why-text">Japan is 30 years ahead of the world in aging demographics. Every authentication problem Japan solves today — for seniors who can't manage PINs — is the global problem of 2035.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">⛩️</div>
-        <div class="why-title">CULTURAL DEPTH AS IP</div>
-        <div class="why-text">Japan's written language system is 2,000 years deep. No AI model trained on Western data can reproduce what a Japanese reader feels when they see colored kanji. That feeling is the patent.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌐</div>
-        <div class="why-title">KANJI ZONE = 1.5B USERS</div>
-        <div class="why-text">Japan, China, Taiwan, Korea — the kanji-using world is 1.5 billion people. TENSOKU AUTH™'s beachhead here unlocks the largest culturally coherent authentication market on earth.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">📱</div>
-        <div class="why-title">MY NUMBER CARD GAP</div>
-        <div class="why-text">Japan mandated digital ID cards — but senior adoption stalls at the PIN entry screen. TENSOKU AUTH™ is the frictionless complement that completes the national digital identity infrastructure.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🚀</div>
-        <div class="why-title">YC × ANTLER × JAPAN</div>
-        <div class="why-text">2026 marks an inflection point: global top accelerators are actively seeking Japan-origin deep tech. DUNKSOFT is the rare company with 43 years of enterprise trust AND a genuinely novel technology moat.</div>
       </div>
     </div>
   </div>
@@ -588,18 +528,18 @@ footer{
   <h2 class="cta-title">Ready to navigate<br><em>the future together?</em></h2>
   <p class="cta-sub">
     DUNKSOFT is raising its first-ever external round.<br>
-    We are open to conversations with investors who understand<br>
+    YC result: June 5. Code with Claude Tokyo: June 10.<br>
+    We welcome conversations with investors who understand<br>
     that the deepest moats are cultural, not computational.
   </p>
   <div class="cta-btns">
-    <a href="mailto:info@dunksoft.com" class="cta-btn-primary">Request One-Pager → </a>
-    <a href="https://dunksoft.com" class="cta-btn-secondary">Visit dunksoft.com</a>
+    <a href="mailto:roberto@dunksoft.com" class="cta-btn-p">Request One-Pager →</a>
+    <a href="https://dunksoft.jp" class="cta-btn-s">Japanese Site →</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">DUNKSOFT Co., Ltd. · TENSOKU AUTH™ · COLOURFUL JAPAN™ · 未来通帳 · © 2026</div>
+  <div class="footer-brand">DUNKSOFT Co., Ltd. · CHROMAKEY AUTH™ · TENSOKU AUTH™ · 未来通帳 · Mythos · MEMORY-BANK™ · COLOURFUL JAPAN™ · © 2026</div>
   <div class="footer-right">Love your life, love your time® · Tokyo · Tokushima</div>
 </footer>
 
